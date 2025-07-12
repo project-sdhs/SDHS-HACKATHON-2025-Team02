@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안전귀갓길</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="logout-popup">
+        <div class="logout-content">
+            <h1>로그아웃</h1>
+            <h3>로그아웃 하시겠습니까?</h3>
+            <div class="abox">
+                <a id="logout-confirm-btn" class="yes" href="#">예</a>
+                <a id="logout-cancel-btn" class="no" href="#">아니오</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="btnimg-box">
+            <button class="menubtn">☰</button>
+            <a href="./index.html"><img src="./images/logo.png" alt="로고"></a>
+        </div>
+        <input type="text" placeholder="⌕ 장소 검색" class="search" id="searchInput">
+        <div id="searchResults" class="search-results"></div>
+        <div class="menu-group">
+            <div id="safe-btn" class="menu-item">경로 찾기</div>
+            <div id="parent-btn" class="menu-item">보호자</div>
+            <div id="find-btn" class="menu-item">즐겨찾기</div>
+        </div>
+        <div id="safe" class="content-panel">
+            <div class="inputgroup">
+                <input type="text" id="start" placeholder="출발지 입력">
+                <input type="text" id="end" placeholder="도착지 입력">
+            </div>
+            <div class="btnbox">
+                <button class="importantbtn" id="findRouteBtn">안심 경로 찾기</button>
+            </div>
+        </div>
+        <div id="parent-before" class="content-panel">
+            <div class="login-box">
+                <p>로그인 후 이용해주세요.</p>
+                <a href="./signin.html">로그인</a>
+            </div>
+        </div>
+        <div id="parent-after-login" class="content-panel">
+            <div class="topbox">
+                <h3>위치 공유 QR 코드</h3>
+                <p>아래의 QR 코드를 스캔해서 연결 대상과 <br> 위치 정보를 공유하세요.</p>
+                <img src="./images/QRcode.png" alt="QR Code">
+                <a class="connect" id="parent-connect-btn" href="#">연결</a>
+            </div>
+        </div>
+        <div id="parent-connected-list" class="content-panel">
+            <div class="top-box">
+                <h3>위치 공유</h3>
+                <div class="profile-box">
+                    <div class="circle"></div>
+                    <div class="text-box">
+                        <h5>박시후</h5>
+                        <p>서울특별시 마포구 아현동</p>
+                    </div>
+                    <a href="#">보기</a>
+                </div>
+            </div>
+        </div>
+        <div id="favorites" class="content-panel">
+            <div id="favorites-list-container"></div>
+            <p id="no-favorites-message" style="display: none; padding: 20px; text-align: center; color: #888;">
+                아직 추가된 즐겨찾기가 없습니다. <br> 지도에서 장소를 검색하여 추가해보세요!
+            </p>
+        </div>
+    </div>
+    <div class="overlay"></div>
+    <div class="popup">
+        <div class="popupwrap">
+            <div class="profile-wrap"><div class="circle"></div></div>
+            <button class="close">✕</button>
+        </div>
+        <div class="pbox"></div>
+        <div class="ftbox">
+            <p>회사 번호 010-9678-0371</p>
+            <p>고객센터 010-6314-1491</p>
+        </div>
+    </div>
+    <div id="routeInfo" class="route-info"></div>
+    <div id="locationPopupOverlay" class="location-popup-overlay"></div>
+    <div id="locationPopup" class="location-popup">
+        <div class="location-popup-header">위치 선택</div>
+        <div class="location-popup-content">
+            <div id="locationPopupPlace" class="location-popup-place">
+                <div id="locationPopupPlaceName"></div>
+                <div id="locationPopupPlaceAddress"></div>
+            </div>
+            <div class="location-popup-buttons">
+                <button id="setStartBtn" class="location-popup-btn start">출발지로</button>
+                <button id="setEndBtn" class="location-popup-btn end">도착지로</button>
+            </div>
+            <button id="addFavoriteBtn" class="location-popup-btn favorite">즐겨찾기</button>
+        </div>
+        <button id="cancelPopupBtn" class="location-popup-btn cancel"><</button>
+    </div>
+    <script src="./js/script.js"></script>
+</body>
+</html>

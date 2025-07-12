@@ -1,0 +1,6 @@
+mkdir safe-route-proxy
+cd safe-route-proxy
+npm init -y
+npm install express axios cors
+cd C:\Users\Webskill_04\safe-route-proxy
+node server.js

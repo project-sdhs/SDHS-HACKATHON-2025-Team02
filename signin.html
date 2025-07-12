@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" href="./css/sign-in.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <img src="./images/logo.png" alt="">
+        <input type="text" id="username" placeholder="아이디" required>
+        <input type="password" id="password" placeholder="비밀번호" required>
+        <button id="login-btn">로그인</button>
+        <div class="link-container">
+            <a href="./signup.html">GO back to sign-up</a>
+        </div>
+    </div>
+
+    <script>
+        const loginButton = document.getElementById('login-btn');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = sessionStorage.getItem('isUserLoggedIn') === 'true';
+            if (isLoggedIn) {
+                alert('이미 로그인 상태입니다. 메인 페이지로 이동합니다.');
+                window.location.href = './index.html';
+            }
+        });
+
+        loginButton.addEventListener('click', () => {
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            if (!username || !password) {
+                alert('아이디와 비밀번호를 모두 입력해주세요.');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const foundUser = users.find(user => user.username === username && user.password === password);
+
+            if (foundUser) {
+                sessionStorage.setItem('isUserLoggedIn', 'true');
+                alert('로그인에 성공했습니다.');
+                window.location.href = './index.html';
+            } else {
+                alert('아이디 또는 비밀번호가 올바르지 않습니다.');
+            }
+        });
+    </script>
+
+</body>
+</html>
